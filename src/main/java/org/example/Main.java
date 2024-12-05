@@ -1,11 +1,11 @@
 package org.example;
 
-import org.example.advent.of.code.day1.Day1;
+import org.example.advent.of.code.day1.Day1b;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println(new Day1().distance());
+//        System.out.println(new Day1a().distance());
+        System.out.println(new Day1b().similarity());
     }
 }

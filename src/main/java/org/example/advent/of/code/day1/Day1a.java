@@ -1,7 +1,5 @@
 package org.example.advent.of.code.day1;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.PriorityQueue;
 import java.util.stream.Stream;
 
-public class Day1 {
+public class Day1a {
     PriorityQueue<Integer> firstList = new PriorityQueue<>();
     PriorityQueue<Integer> secondList = new PriorityQueue<>();
     Path filePath = Paths.get("src/main/java/org/example/advent/of/code/day1/day1resource.txt");
