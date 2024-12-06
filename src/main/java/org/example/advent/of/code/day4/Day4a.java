@@ -15,7 +15,7 @@ public class Day4a {
                             {1,1},{1,0},{1,-1}};
 
 
-    public byte[][] fileRead(){
+    private byte[][] fileRead(){
         List<byte[]> bytes = new ArrayList<>();
         try (Stream<String> lines = Files.lines(filePath)) {
             bytes = lines.map(String::getBytes).toList();
