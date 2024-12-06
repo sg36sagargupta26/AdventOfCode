@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 public class Day3a {
     Path filePath = Paths.get("src/main/java/org/example/advent/of/code/day3/day3resource.txt");
@@ -26,29 +24,27 @@ public class Day3a {
      *
      */
     public int sumOfMul(){
-        AtomicInteger totalSum = new AtomicInteger();
+        int totalSum = 0;
         Pattern groupPattern = Pattern.compile("mul\\((\\d{1,3}),(\\d{1,3})\\)");
         Pattern numberPattern = Pattern.compile("\\d{1,3}");
 
-        try (Stream<String> lines = Files.lines(filePath)) {
-            lines.forEach(line -> {
-                Matcher matcher = groupPattern.matcher(line);
-                int res = 0;
-                while (matcher.find()) {
-                    String group = matcher.group();
-                    Matcher numberMatcher = numberPattern.matcher(group);
-                    int num =1;
-                    while (numberMatcher.find()){
-                        num*=Integer.parseInt(numberMatcher.group());
-                    }
-                    res+=num;
+        try{
+            String content = new String(Files.readAllBytes(filePath));
+            Matcher matcher = groupPattern.matcher(content);
+            int res = 0;
+            while (matcher.find()) {
+                String group = matcher.group();
+                Matcher numberMatcher = numberPattern.matcher(group);
+                int num =1;
+                while (numberMatcher.find()){
+                    num*=Integer.parseInt(numberMatcher.group());
                 }
-                totalSum.getAndAdd(res);
-
-            });
-        } catch (IOException e) {
+                res+=num;
+            }
+            totalSum+=res;
+        }catch (IOException e){
             System.out.println("failed to read file");
         }
-        return totalSum.get();
+        return totalSum;
     }
 }
