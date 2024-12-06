@@ -73,15 +73,6 @@ public class Day3b {
         }catch (IOException e){
             System.out.println("failed to read file");
         }
-
-        try (Stream<String> lines = Files.lines(filePath)) {
-            lines.forEach(line -> {
-
-
-            });
-        } catch (IOException e) {
-            System.out.println("failed to read file");
-        }
         return totalSum;
     }
 }
