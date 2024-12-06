@@ -15,6 +15,7 @@ public class Day1a {
     private void addIntegersToList(){
         try (Stream<String> lines = Files.lines(filePath)) {
             lines.forEach(line -> {
+                //Both the lists are separated by 3 spaces and regex " {3}" is for that
                 String [] parsedLine = line.split(" {3}");
                 Integer firstInt = Integer.parseInt(parsedLine[0]);
                 Integer secondInt = Integer.parseInt(parsedLine[1]);
