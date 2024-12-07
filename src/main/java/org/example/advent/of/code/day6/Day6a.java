@@ -77,7 +77,7 @@ public class Day6a {
         int currPositionX = initialPositionX;
         int currPositionY = initialPositionY;
         total++;
-        bytes[currPositionY][currPositionX]=10;
+        bytes[currPositionY][currPositionX]=88;
         Direction currDirection = Direction.UP;
 
         while (currPositionX+currDirection.getJ()>=0 && currPositionX+currDirection.getJ()<colLength
@@ -85,17 +85,20 @@ public class Day6a {
             if(bytes[currPositionY+currDirection.getI()][currPositionX+currDirection.getJ()]==35){
                 //encountered obstacle turn right
                 currDirection = Direction.rotateRight(currDirection);
-            }else if(bytes[currPositionY+currDirection.getI()][currPositionX+currDirection.getJ()]==10){
+            }else if(bytes[currPositionY+currDirection.getI()][currPositionX+currDirection.getJ()]==88){
                 //already mapped no need to recount it just update current position
                 currPositionX+=currDirection.getJ();
                 currPositionY+=currDirection.getI();
             }else{
                 //just move
-                bytes[currPositionY+currDirection.getI()][currPositionX+currDirection.getJ()]=10;
+                bytes[currPositionY+currDirection.getI()][currPositionX+currDirection.getJ()]=88;
                 total++;
                 currPositionX+=currDirection.getJ();
                 currPositionY+=currDirection.getI();
             }
+        }
+        for(byte [] bytes1: bytes){
+            System.out.println(new String(bytes1));
         }
         return total;
     }
