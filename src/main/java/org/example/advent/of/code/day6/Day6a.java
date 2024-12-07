@@ -10,39 +10,6 @@ import java.util.stream.Stream;
 
 public class Day6a {
     Path filePath = Paths.get("src/main/java/org/example/advent/of/code/day6/day6resource.txt");
-    private enum Direction{
-        UP(-1,0),
-        DOWN(1,0),
-        LEFT(0,-1),
-        RIGHT(0,1);
-
-        public int getI() {
-            return i;
-        }
-
-        public int getJ() {
-            return j;
-        }
-
-        private final int i;
-        private final int j;
-        Direction(int i,int j){
-            this.i = i;
-            this.j = j;
-        }
-
-        public static Direction rotateRight( Direction direction){
-            return switch (direction) {
-                case UP -> RIGHT;
-                case RIGHT -> DOWN;
-                case DOWN -> LEFT;
-                case LEFT -> UP;
-            };
-        }
-
-
-    }
-
 
     private byte[][] fileRead(){
         List<byte[]> bytes = new ArrayList<>();
