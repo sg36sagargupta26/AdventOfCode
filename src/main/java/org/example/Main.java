@@ -1,11 +1,10 @@
 package org.example;
 
-import org.example.advent.of.code.day5.Day5a;
-import org.example.advent.of.code.day5.Day5b;
+import org.example.advent.of.code.day6.Day6a;
 
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(new Day5b().totalMidSum());
+        System.out.println(new Day6a().totalCount());
     }
 }

@@ -1,0 +1,102 @@
+package org.example.advent.of.code.day6;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Day6a {
+    Path filePath = Paths.get("src/main/java/org/example/advent/of/code/day6/day6resource.txt");
+    private enum Direction{
+        UP(-1,0),
+        DOWN(1,0),
+        LEFT(0,-1),
+        RIGHT(0,1);
+
+        public int getI() {
+            return i;
+        }
+
+        public int getJ() {
+            return j;
+        }
+
+        private final int i;
+        private final int j;
+        Direction(int i,int j){
+            this.i = i;
+            this.j = j;
+        }
+
+        public static Direction rotateRight( Direction direction){
+            return switch (direction) {
+                case UP -> RIGHT;
+                case RIGHT -> DOWN;
+                case DOWN -> LEFT;
+                case LEFT -> UP;
+            };
+        }
+
+
+    }
+
+
+    private byte[][] fileRead(){
+        List<byte[]> bytes = new ArrayList<>();
+        try (Stream<String> lines = Files.lines(filePath)) {
+            bytes = lines.map(String::getBytes).toList();
+        } catch (IOException e) {
+            System.out.println("failed to read file");
+        }
+        return bytes.toArray(new byte[0][]);
+    }
+
+    public int totalCount(){
+        byte[][] bytes = fileRead();
+        int total = 0;
+        int rowLength = bytes.length;
+        int colLength = bytes[0].length;
+        int initialPositionX =-1;
+        int initialPositionY =-1;
+        for(int i=0;i<rowLength;i++){
+            for(int j=0;j<colLength;j++){
+                if(bytes[i][j]==94){
+                    initialPositionX =j;
+                    initialPositionY =i;
+                    break;
+                }
+            }
+            if(initialPositionX!=-1){
+                break;
+            }
+        }
+
+        int currPositionX = initialPositionX;
+        int currPositionY = initialPositionY;
+        total++;
+        bytes[currPositionY][currPositionX]=10;
+        Direction currDirection = Direction.UP;
+
+        while (currPositionX+currDirection.getJ()>=0 && currPositionX+currDirection.getJ()<colLength
+                && currPositionY+ currDirection.getI()>=0 && currPositionY + currDirection.getI()<rowLength){
+            if(bytes[currPositionY+currDirection.getI()][currPositionX+currDirection.getJ()]==35){
+                //encountered obstacle turn right
+                currDirection = Direction.rotateRight(currDirection);
+            }else if(bytes[currPositionY+currDirection.getI()][currPositionX+currDirection.getJ()]==10){
+                //already mapped no need to recount it just update current position
+                currPositionX+=currDirection.getJ();
+                currPositionY+=currDirection.getI();
+            }else{
+                //just move
+                bytes[currPositionY+currDirection.getI()][currPositionX+currDirection.getJ()]=10;
+                total++;
+                currPositionX+=currDirection.getJ();
+                currPositionY+=currDirection.getI();
+            }
+        }
+        return total;
+    }
+}
