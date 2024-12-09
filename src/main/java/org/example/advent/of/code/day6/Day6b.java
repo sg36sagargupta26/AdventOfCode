@@ -1,5 +1,7 @@
 package org.example.advent.of.code.day6;
 
+import org.example.util.Direction;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,6 +9,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
+import static org.example.util.Helper.deepCopy;
 
 public class Day6b {
     Path filePath = Paths.get("src/main/java/org/example/advent/of/code/day6/day6resource.txt");
@@ -132,10 +136,4 @@ public class Day6b {
         return slowCurrPositionX + currDirection.getJ() >= 0 && slowCurrPositionX + currDirection.getJ() < colLength
                 && slowCurrPositionY + currDirection.getI() >= 0 && slowCurrPositionY + currDirection.getI() < rowLength;
     }
-
-
-    byte[][] deepCopy(byte[][] matrix) {
-        return java.util.Arrays.stream(matrix).map(el -> el.clone()).toArray($ -> matrix.clone());
-    }
-
 }

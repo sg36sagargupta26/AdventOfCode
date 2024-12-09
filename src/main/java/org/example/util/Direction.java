@@ -1,4 +1,4 @@
-package org.example.advent.of.code.day6;
+package org.example.util;
 
 public enum Direction {
     UP(-1,0),

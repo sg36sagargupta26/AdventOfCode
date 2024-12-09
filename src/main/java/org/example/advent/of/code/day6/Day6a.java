@@ -1,5 +1,7 @@
 package org.example.advent.of.code.day6;
 
+import org.example.util.Direction;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
