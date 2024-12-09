@@ -1,10 +1,10 @@
 package org.example;
 
-import org.example.advent.of.code.day7.Day7b;
+import org.example.advent.of.code.day8.Day8a;
 
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(new Day7b().safeReports());
+        System.out.println(new Day8a().totalCount());
     }
 }
