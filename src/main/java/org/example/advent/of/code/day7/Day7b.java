@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 
-public class Day7a {
+public class Day7b {
     Path filePath = Paths.get("src/main/java/org/example/advent/of/code/day7/day7resource.txt");
 
     public long safeReports(){
@@ -33,7 +33,7 @@ public class Day7a {
     }
 
     private boolean isValid(List<Long> l, long target, int start, int end) {
-        if(start==end && target==l.getLast()){
+        if (start == end && target == l.getLast()) {
             return true;
         }
 
@@ -45,13 +45,17 @@ public class Day7a {
         }
         //addition
         List<Long> list = new ArrayList<>(l);
-        long nextElement = list.get(start + 1);
+        final long nextElement = list.get(start + 1);
         long add = list.get(start) + nextElement;
         list.set(start + 1, add);
-        boolean isValidAdd = isValid(list, target , start + 1, end);
+        boolean isValidAdd = isValid(list, target, start + 1, end);
         long mul = list.get(start) * nextElement;
         list.set(start + 1, mul);
-        boolean isValidMul = isValid(list, target , start + 1, end);
-        return isValidAdd || isValidMul;
+        boolean isValidMul = isValid(list, target, start + 1, end);
+        long concat = Long.parseLong(list.get((start)) + "" + nextElement);
+        list.set(start + 1, concat);
+        boolean isValidConcat = isValid(list,target,start+1,end);
+        return isValidAdd || isValidMul || isValidConcat;
     }
+
 }
