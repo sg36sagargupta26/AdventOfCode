@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class Day11 {
     Path filePath = Paths.get("src/main/java/org/example/advent/of/code/day11/day11resource.txt");
-    int blinks =25;
+    int blinks =75;
     Map<Pair<Long,Integer>,Long> memo = new HashMap<>();
 
 
