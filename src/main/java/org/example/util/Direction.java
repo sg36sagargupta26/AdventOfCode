@@ -29,4 +29,12 @@ public enum Direction {
             case LEFT -> UP;
         };
     }
+    public static Direction rotateLeft(Direction direction){
+        return switch (direction){
+            case UP -> LEFT;
+            case RIGHT ->  UP;
+            case DOWN -> RIGHT;
+            case LEFT -> DOWN;
+        };
+    }
 }
